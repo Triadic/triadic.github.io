@@ -1,0 +1,207 @@
+<div class="container tt-rate-calculator-container">
+
+	<h1>Cost Savings Calculator</h1>
+
+	<p>Use our interactive calculator to estimate your cost savings
+	   from implementing a full-featured VMS or FMS to manage your extended
+	   workforce. Just answer a few quick questions, and you’ll see why our
+	   technology consistently delivers such a high ROI for our Fortune 500
+	   and Global 2000 clients.
+	</p>
+
+	<form target="_blank" onsubmit="return window.confirm(&quot;You are submitting information to an external page.\nAre you sure?&quot;);">
+	   <div>
+		  <div class="row">
+			 <div class="col-md-4"><label>Expected Billing Rate ?</label></div>
+			 <div class="col-md-8">$<input type="text" class="col-md-7" />
+			 </div>
+		  </div>
+		  <div class="row">
+			 <div class="col-md-4"><label>Would you need H1B Sponsor ?</label></div>
+			 <div class="col-md-8">
+				<button class="btn" type="button">Not Applicable</button>
+				<button class="btn" type="button">Normal</button>
+				<button class="btn" type="button">Premium</button>
+			 </div>
+		  </div>
+		  <div class="row">
+			 <div class="col-md-4"><label>Would you need GC Sponsor ?</label></div>
+			 <div class="col-md-8">
+				<button class="btn" type="button">Not Applicable</button>
+				<button class="btn" type="button">Normal</button>
+				<button class="btn" type="button">Premium</button>
+			 </div>
+		  </div>
+		  
+		  <div class="row">
+			 <div class="col-md-4"><label>Would you need Health Care and Dental ?</label></div>
+			 <div class="col-md-8">
+				<button class="btn" type="button">Not Applicable</button>
+				<button class="btn" type="button">Single</button>
+				<button class="btn" type="button">Family</button>
+			 </div>
+		  </div>
+		  <div class="row">
+			<div class="col-md-offset-4 col-md-8">
+				 <button class="btn btn-primary" type="button">Reset</button>
+				 <button class="btn btn-primary" type="button">Calculate</button>
+			 </div>
+		  </div>
+	
+	</div>	
+	</form>
+	
+	<div class="container tt-rate-calculator">
+	<table class="table table-bordered">
+	   <thead>
+		  <tr>
+			 <th> </th>
+			 <th colspan="2"></th>
+			 <th colspan="2">Year 1</th>
+			 <th>Year 2</th>
+		  </tr>
+		  <tr>
+			 <th>Employee project (Internal) cost sheet for Percentage deal</th>
+			 <th>First 6 payrolls</th>
+			 <th>Next 7 payrolls</th>
+			 <th>Next 13 payrolls</th>
+			 <th>Total</th>
+			 <th>26 payrolls</th>
+		  </tr>
+	   </thead>
+	   
+	   <tbody>
+		  <tr>
+			 <td>Client Billing Rate</td>
+			 <td>${{request.currentRate}}</td>
+			 <td>${{request.currentRate}}</td>
+			 <td>${{request.currentRate}}</td>
+			 <td></td>
+			 <td>${{request.currentRate}}</td>
+		  </tr>
+		  <tr>
+			 <td>Less: VMS portal fee, if any. VMS Example: Beeline, Fieldglass.</td>
+			 <td>{{data.extraExp.vmsExp }}%</td>
+			 <td>{{data.extraExp.vmsExp }}%</td>
+			 <td>{{data.extraExp.vmsExp }}%</td>
+			 <td></td>
+			 <td>{{data.extraExp.vmsExp }}%</td>
+		  </tr>
+		  <tr>
+			 <td>Net Billing Rate </td>
+			 <td>${{request.currentRate}}</td>
+			 <td>${{request.currentRate}}</td>
+			 <td>${{request.currentRate}}</td>
+			 <td></td>
+			 <td>${{request.currentRate}}</td>
+		  </tr>
+		  <tr>
+			 <td>less: {{data.extraExp.overHead10}}% retained by the company to manage Corporate Overhead &amp; margins</td>
+			 <td>${{ minusOverhead }}</td>
+			 <td>${{ minusOverhead }}</td>
+			 <td>${{ minusOverhead }}</td>
+			 <td></td>
+			 <td>${{ minusOverhead }}</td>
+		  </tr>
+		  <tr>
+			 <td>Balance available to employee after {{data.extraExp.overHead10}}% retained by iknowvate to manage Corp Overheads</td>
+			 <td>${{ afterOverHead }}</td>
+			 <td>${{ afterOverHead }}</td>
+			 <td>${{ afterOverHead }}</td>
+			 <td></td>
+			 <td>${{ afterOverHead }}</td>
+		  </tr>
+		  <tr>
+			 <td>Times: Typical number of work hours per  {{data.extraExp.payDuration}} week pay period</td>
+			 <td>{{data.extraExp.payDuration * data.extraExp.hoursPerWeek}}</td>
+			 <td>{{data.extraExp.payDuration * data.extraExp.hoursPerWeek}}</td>
+			 <td>{{data.extraExp.payDuration * data.extraExp.hoursPerWeek}}</td>
+			 <td></td>
+			 <td>{{data.extraExp.payDuration * data.extraExp.hoursPerWeek}}</td>
+		  </tr>
+		  <tr>
+			 <td>The money tavelable for the consulant per payroll period</td>
+			 <td>${{ payPerDefinedWeek }}</td>
+			 <td>${{ payPerDefinedWeek }}</td>
+			 <td>${{ payPerDefinedWeek }}</td>
+			 <td></td>
+			 <td>${{ payPerDefinedWeek }}</td>
+		  </tr>
+		  <tr>
+			 <td>less: {{request.h1BOption}} H1b fee </td>
+			 <td>${{data.pay1to6.h1BRExp}}</td>
+			 <td>${{data.pay7to12.h1BRExp}}</td>
+			 <td>${{data.pay13to26.h1BRExp}}</td>
+			 <td></td>
+			 <td></td>
+		  </tr>
+		  <tr>
+			 <td>less: {{request.h1BOption}} H1b fee </td>
+			 <td>${{data.pay1to6.h1BPExp}}</td>
+			 <td>${{data.pay7to12.h1BPExp}}</td>
+			 <td>${{data.pay13to26.h1BPExp}}</td>
+			 <td></td>
+			 <td></td>
+		  </tr>
+		  <tr>
+			 <td>less:{{request.gcOption}} GC fee</td>
+			 <td>${{data.pay1to6.gcRExp}}</td>
+			 <td>${{data.pay7to12.gcRExp}}</td>
+			 <td>${{data.pay13to26.gcRExp}}</td>
+			 <td></td>
+			 <td></td>
+		  </tr>
+		  <tr>
+			 <td>less:{{request.gcOption}} GC fee</td>
+			 <td>${{data.pay1to6.gcPExp}}</td>
+			 <td>${{data.pay7to12.gcRExp}}</td>
+			 <td>${{data.pay13to26.gcRExp}}</td>
+			 <td></td>
+			 <td></td>
+		  </tr>
+		  <tr>
+			 <td>less: HC and dental</td>
+			 <td>${{ data.pay1to6.hcandExp }}</td>
+			 <td>${{data.pay7to12.hcandExp}}</td>
+			 <td>${{data.pay13to26.hcandExp}}</td>
+			 <td></td>
+			 <td>${{data.pay26Plus.hcandExp}}</td>
+		  </tr>
+		  <tr>
+			 <td>Balance available for payroll</td>
+			 <td>${{ pay1to6RollOut }}</td>
+			 <td>${{ pay7to12RollOut }}</td>
+			 <td>${{ pay13to26RollOut }}</td>
+			 <td></td>
+			 <td>${{ pay26PlusRollOut }}</td>
+		  </tr>
+		  <tr>
+			 <td>less: {{data.extraExp.payRollTax}}% to cover payroll related employer taxes, Insurance &amp; expenses</td>
+			 <td>${{ ((data.extraExp.payRollTax / 100) * pay1to6RollOut).toFixed(2) }}</td>
+			 <td>${{ ((data.extraExp.payRollTax / 100) * pay7to12RollOut).toFixed(2) }}</td>
+			 <td>${{ ((data.extraExp.payRollTax / 100) * pay13to26RollOut).toFixed(2) }}</td>
+			 <td></td>
+			 <td>${{ ((data.extraExp.payRollTax / 100) * pay26PlusRollOut).toFixed(2) }}</td>
+		  </tr>
+		  <tr>
+			 <td>Base (Gross) pay per pay period</td>
+			 <td></td>
+			 <td></td>
+			 <td></td>
+			 <td></td>
+			 <td></td>
+		  </tr>
+		  <tr>
+			 <th>Total base pay </th>
+			 <td></td>
+			 <td></td>
+			 <td></td>
+			 <td></td>
+			 <td></td>
+		  </tr>
+	   </tbody>
+	</table>
+	</div>
+	
+</div>
+</div>
